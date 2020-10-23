@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Essentials;
 
 namespace XFEDeviceDisplayInfoSample
 {
@@ -13,6 +14,15 @@ namespace XFEDeviceDisplayInfoSample
         public MainPage()
         {
             InitializeComponent();
+
+            DeviceDisplay.KeepScreenOn = true;
+
+            DeviceDisplay.MainDisplayInfoChanged += DeviceDisplay_MainDisplayInfoChanged;
+        }
+
+        private void DeviceDisplay_MainDisplayInfoChanged(object sender, DisplayInfoChangedEventArgs e)
+        {
+            DeviceInfoLabel.Text = e.DisplayInfo.ToString();
         }
     }
 }
